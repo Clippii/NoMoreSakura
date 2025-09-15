@@ -28,7 +28,7 @@ bot.on('messageCreate', message => {
                     }).catch(error => {
                         console.log('Error removing timeout:', error.message);
                     });
-                }, 1000);
+                }, 5000);
             }).catch(error => {
                 console.log('Error timing out user:', error.message);
             });
