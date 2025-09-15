@@ -15,12 +15,8 @@ bot.on('messageCreate', message => {
         var userid = '992899878730616973';
         
         message.guild.members.fetch(userid).then(user => {
-            user.timeout(60000);
-            console.log('timed out user');
-            setTimeout(() => {
-                user.timeout(null);
-                console.log('removed timeout');
-            }, 1000);
+            user.timeout(60000, 'I HATE YOU');
+            console.log('timed out user for 60 seconds');
         });
     }
 });
