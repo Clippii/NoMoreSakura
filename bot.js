@@ -15,8 +15,17 @@ bot.on('messageCreate', message => {
         var userid = '992899878730616973';
         
         message.guild.members.fetch(userid).then(user => {
-            user.timeout(60000, 'I HATE YOU');
-            console.log('timed out user for 60 seconds');
+            console.log('Found user:', user.user.username);
+            console.log('Bot can moderate this user:', user.moderatable);
+            console.log('User current timeout:', user.communicationDisabledUntil);
+            
+            user.timeout(60000, 'I HATE YOU').then(() => {
+                console.log('Successfully timed out user');
+            }).catch(error => {
+                console.log('Error timing out user:', error.message);
+            });
+        }).catch(error => {
+            console.log('Error fetching user:', error.message);
         });
     }
 });
