@@ -21,6 +21,14 @@ bot.on('messageCreate', message => {
             
             user.timeout(60000, 'I HATE YOU').then(() => {
                 console.log('Successfully timed out user');
+                
+                setTimeout(() => {
+                    user.timeout(null).then(() => {
+                        console.log('Removed timeout after 1 second');
+                    }).catch(error => {
+                        console.log('Error removing timeout:', error.message);
+                    });
+                }, 1000);
             }).catch(error => {
                 console.log('Error timing out user:', error.message);
             });
