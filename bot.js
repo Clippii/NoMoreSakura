@@ -1,6 +1,7 @@
 const discord = require('discord.js');
 require('dotenv').config();
-
+const userid = process.env.USERID;
+const timeout = process.env.TIMEOUTDURATION;
 const bot = new discord.Client({
     intents: [
         discord.GatewayIntentBits.Guilds,
@@ -12,7 +13,7 @@ const bot = new discord.Client({
 
 bot.on('messageCreate', message => {
     if (message.content == '?skoods') {
-        var userid = '651792410594246659';
+
         
         message.guild.members.fetch(userid).then(user => {
             console.log('Found user:', user.user.username);
@@ -28,7 +29,7 @@ bot.on('messageCreate', message => {
                     }).catch(error => {
                         console.log('Error removing timeout:', error.message);
                     });
-                }, 50000);
+                }, timeout);
             }).catch(error => {
                 console.log('Error timing out user:', error.message);
             });
