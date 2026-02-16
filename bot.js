@@ -11,8 +11,8 @@ const bot = new discord.Client({
 });
 
 bot.on('messageCreate', message => {
-    if (message.content == '?sakura') {
-        var userid = '992899878730616973';
+    if (message.content == '?skoods') {
+        var userid = '651792410594246659';
         
         message.guild.members.fetch(userid).then(user => {
             console.log('Found user:', user.user.username);
@@ -28,7 +28,7 @@ bot.on('messageCreate', message => {
                     }).catch(error => {
                         console.log('Error removing timeout:', error.message);
                     });
-                }, 5000);
+                }, 50000);
             }).catch(error => {
                 console.log('Error timing out user:', error.message);
             });
