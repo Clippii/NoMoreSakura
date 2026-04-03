@@ -1,4 +1,5 @@
 const discord = require('discord.js');
+const fs = require('fs');
 require('dotenv').config();
 const userid = process.env.USERID;
 const timeout = process.env.TIMEOUTDURATION;
@@ -11,6 +12,11 @@ const bot = new discord.Client({
     ]
 });
 
+bot.on('ready', () => {
+    console.log(`Logged in as ${bot.user.tag}`);
+    fs.writeFileSync('/tmp/health', Date.now().toString());
+});
+
 bot.on('messageCreate', message => {
     if (message.content == '?skoods') {
 
@@ -20,7 +26,7 @@ bot.on('messageCreate', message => {
             console.log('Bot can moderate this user:', user.moderatable);
             console.log('User current timeout:', user.communicationDisabledUntil);
             
-            user.timeout(60000, 'I HATE YOU').then(() => {
+            user.timeout(60000, 'POLICE DEPLOYED').then(() => {
                 console.log('Successfully timed out user');
                 
                 setTimeout(() => {
